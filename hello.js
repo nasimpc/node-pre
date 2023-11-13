@@ -3,9 +3,21 @@ const fs = require('fs');
 const server = http.createServer((req, res) => {
     if (req.url == '/') {
         res.write('<html>');
-        res.write('</body><form action ="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></input></form></body>');
-        res.write('</html>');
-        return res.end();
+
+        return fs.readFile("msg.txt", { encoding: "utf8" }, (err, data) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log(data, 'hi1');
+
+            res.write(`<body>${data}</body>`);
+            res.write('</body><form action ="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></input></form></body>');
+            res.write('</html>');
+
+            return res.end();
+
+        });
+
     }
 
     if (req.url == '/message' && req.method == 'POST') {
@@ -33,4 +45,5 @@ const server = http.createServer((req, res) => {
     res.write('</html>');
     res.end();
 });
+
 server.listen(3000);
