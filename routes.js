@@ -39,10 +39,14 @@ const requestHandler = (req, res) => {
 
 
     }
+
     res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
+
     res.write('</body>Welcome to my node node js project hi</body>');
     res.write('</html>');
+
+
     res.end();
 };
 //module.exports = requestHandler;
