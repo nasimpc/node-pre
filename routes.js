@@ -29,12 +29,14 @@ const requestHandler = (req, res) => {
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
-            const msg = parsedBody.split('=')[1];
+            const msg = parsedBody.split('=')[0];
             fs.writeFile('msg.txt', msg, (err) => {
                 res.statusCode = 302;
                 res.setHeader('location', '/');
                 return res.end();
             });
+
+
         });
 
 
