@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/" method="POST" onsubmit="saveToStorage(event)"><input id="login" type="text"
+            name="login"></input><button type="submit">login</button></form>
+    <script>
+        function saveToStorage(e) {
+            //e.preventDefault();
+            const username = event.target.login.value;
+            localStorage.setItem('username', username);
+        }
+    </script>
+</body>
+
+</html>
