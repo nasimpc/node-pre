@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url('image.jpg');
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: orange;
+            text-align: center;
+        }
+
+        fieldset {
+            border-color: orange;
+            border-radius: 10px;
+            margin-left: 300px;
+            max-width: 700px;
+            text-align: center;
+
+            ;
+
+        }
+
+        p {
+            text-align: center;
+        }
+
+        button {
+
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 9px 284px;
+            color: #fff;
+            background: orange;
+            font-size: 16px;
+            text-align: center;
+
+
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <form>
+            <h2>Book a call</h2>
+            <p>Book a call and our representative call you within 1hr of selected time</p>
+            <hr>
+            <p>
+                <label>Name
+                    <input type="text" id="name" required>
+                </label>
+            </p>
+            <p>
+                <label>Email
+                    <input type="email" id="email" name="email_address">
+                </label>
+            </p>
+
+            <p>
+                <label>Phone
+                    <input type="tel" id="phone" name="phone_number">
+                </label>
+            </p>
+
+
+            <p>
+                <label>Time for call:<br>
+                    <input type="datetime-local" id="date1" name="pickup_time" required>
+                </label>
+            </p>
+            <p><button onclick="register()">Get a call</button></p>
+
+        </form>
+    </fieldset>
+    <script>
+        function register() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date1').value;
+
+            console.log(name)
+            console.log(email)
+            console.log(phone)
+            console.log(date)
+            window.location.href = "/success";
+
+
+        }
+    </script>
+</body>
+
+</html>
