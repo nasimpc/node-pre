@@ -1,6 +1,6 @@
 const http = require('http');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises;
 const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
@@ -15,20 +15,20 @@ app.use('/login', (req, res, next) => {
 app.use('/', (req, res, next) => {
     console.log(req.body);
     if ('msg' in req.body) {
-        fs.appendFile('msg.txt', imp + req.body['msg'], (err) => {
-            fs.readFile(path.join(__dirname, 'msg.txt'), (err, data) => {
-                res.write('<html>');
-                res.write(`<form action="/" method="POST" ><p id="a">${data.toString()}</p><input type="text" name="msg"></input><button type="submit">message</button></form>`);
-                res.write('</html>');
-                res.end();
-            });
+        fs.appendFile('msg.txt', imp + req.body['msg']).then((res) => {
+            return fs.readFile(path.join(__dirname, 'msg.txt'))
+        }).then((data) => {
+            res.write('<html>');
+            res.write(`<form action="/" method="POST" ><p id="a">${data}</p><input type="text" name="msg"></input><button type="submit">message</button></form>`);
+            res.write('</html>');
+            res.end();
         });
     }
     else {
         imp = ' ' + req.body['login'] + ': '
-        fs.readFile(path.join(__dirname, 'msg.txt'), (err, data) => {
+        fs.readFile(path.join(__dirname, 'msg.txt')).then((data) => {
             res.write('<html>');
-            res.write(`<form action="/" method="POST" ><p id="a">${data.toString()}</p><input type="text" name="msg"></input><button type="submit">message</button></form>`);
+            res.write(`<form action="/" method="POST" ><p id="a">${data}</p><input type="text" name="msg"></input><button type="submit">message</button></form>`);
             res.write('</html>');
             res.end();
         });
